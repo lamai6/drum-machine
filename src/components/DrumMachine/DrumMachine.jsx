@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Display from '../Display/Display';
 
 class DrumMachine extends Component {
   constructor(props) {
@@ -7,7 +8,11 @@ class DrumMachine extends Component {
   }
 
   render() {
-    return <div id="drum-machine" />;
+    return (
+      <div id="drum-machine">
+        <Display />
+      </div>
+    );
   }
 }
 
