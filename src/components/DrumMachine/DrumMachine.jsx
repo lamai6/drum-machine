@@ -7,7 +7,7 @@ class DrumMachine extends Component {
   }
 
   render() {
-    return <div />;
+    return <div id="drum-machine" />;
   }
 }
 
