@@ -9,4 +9,14 @@ describe('DrumMachine test suite', () => {
 
     expect(outerContainer).toBeInTheDocument();
   });
+
+  it('should render a div with a corresponding id="display" within #drum-machine (US #2)', () => {
+    const { container } = render(<DrumMachine />);
+    const outerContainer = container.querySelector('div[id=drum-machine]');
+    const display = Array.from(outerContainer.childNodes).filter(
+      (elem) => elem.id === 'display'
+    )[0];
+
+    expect(display).toBeInTheDocument();
+  });
 });
