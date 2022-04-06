@@ -1,5 +1,6 @@
 $text-color: white;
 $font_url: url('@fonts/roboto-regular.ttf');
+$image_bg: url('@images/carbon.png');
 
 @font-face {
   font-family: 'Roboto';
@@ -9,23 +10,15 @@ $font_url: url('@fonts/roboto-regular.ttf');
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
-#counter {
-  color: $text-color;
-
-  h3 {
-    text-align: center;
-  }
-
-  div {
-    display: flex;
-    justify-content: center;
-
-    button {
-      margin: 0 1em;
-    }
-  }
+#container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: $image_bg;
+  background-color: #202020;
 }
