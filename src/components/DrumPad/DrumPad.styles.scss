@@ -1,0 +1,23 @@
+.drum-pad {
+  flex: 0 1 30%;
+  margin: 0.5em auto;
+  background-color: #b3b3b3;
+  border-radius: 0.5em;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.25s;
+
+  span {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translateY(-0.2em);
+  }
+}
