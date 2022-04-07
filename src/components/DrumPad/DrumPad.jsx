@@ -9,9 +9,12 @@ class DrumPad extends Component {
   }
 
   render() {
-    const { soundId, keyTrigger } = this.props;
+    const { soundId, soundSrc, keyTrigger } = this.props;
     return (
       <div className="drum-pad" id={soundId}>
+        <audio className="clip" id={keyTrigger} src={soundSrc}>
+          <track kind="captions" label={soundId} />
+        </audio>
         <span>{keyTrigger}</span>
       </div>
     );
@@ -20,6 +23,7 @@ class DrumPad extends Component {
 
 DrumPad.propTypes = {
   soundId: PropTypes.string.isRequired,
+  soundSrc: PropTypes.string.isRequired,
   keyTrigger: PropTypes.string.isRequired,
 };
 

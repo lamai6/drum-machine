@@ -17,6 +17,7 @@ class DrumMachine extends Component {
     const drumPads = activeSoundBox.map((sound) => (
       <DrumPad
         soundId={sound.id}
+        soundSrc={sound.url}
         keyTrigger={sound.keyTrigger}
         key={sound.id}
       />
