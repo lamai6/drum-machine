@@ -19,4 +19,13 @@ describe('DrumMachine test suite', () => {
 
     expect(display).toBeInTheDocument();
   });
+
+  it('should render 9 clickable drum pad elements, each with .drum-pad, a unique id, and an inner text corresponding to his key (US #3)', () => {
+    const { container } = render(<DrumMachine />);
+    const outerContainer = container.querySelectorAll('div[class=drum-pad]');
+
+    expect(outerContainer).toHaveLength(9);
+    expect(outerContainer[0].id).toBe('Heater-1');
+    expect(outerContainer[0].childNodes[0].innerHTML).toBe('Q');
+  });
 });
