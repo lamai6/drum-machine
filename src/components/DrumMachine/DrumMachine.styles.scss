@@ -1,5 +1,5 @@
 #drum-machine {
-  width: 80%;
+  width: 70%;
   height: 60%;
   margin: 0 auto;
   border: 0.2rem solid #fff;
@@ -7,6 +7,7 @@
   padding: 0.4em;
   box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #ff3131,
     0 0 0.8rem #ff3131, 0 0 2.8rem #ff3131, inset 0 0 1.3rem #ff3131;
+  outline: none;
 }
 
 #drum-pad-container {

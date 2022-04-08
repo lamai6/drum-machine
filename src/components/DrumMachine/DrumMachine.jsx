@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, createRef } from 'react';
 import Display from '../Display/Display';
 import DrumPad from '../DrumPad/DrumPad';
 import { soundBox1, soundBox2 } from '../../assets/data/sounds';
@@ -9,22 +9,35 @@ class DrumMachine extends Component {
     super(props);
     this.state = {
       activeSoundBox: soundBox1,
+      keyEvent: '',
     };
+    this.drumMachineRef = createRef();
+  }
+
+  componentDidMount() {
+    this.drumMachineRef.current.focus();
   }
 
   render() {
-    const { activeSoundBox } = this.state;
+    const { activeSoundBox, keyEvent } = this.state;
     const drumPads = activeSoundBox.map((sound) => (
       <DrumPad
+        key={sound.id}
         soundId={sound.id}
         soundSrc={sound.url}
-        keyTrigger={sound.keyTrigger}
-        key={sound.id}
+        soundKey={sound.keyTrigger}
+        keyTriggered={keyEvent}
       />
     ));
 
     return (
-      <div id="drum-machine">
+      <div
+        onKeyDown={(e) => this.setState({ keyEvent: e.key.toUpperCase() })}
+        ref={this.drumMachineRef}
+        id="drum-machine"
+        role="button"
+        tabIndex={0}
+      >
         <div id="drum-pad-container">{drumPads}</div>
         <Display />
       </div>
