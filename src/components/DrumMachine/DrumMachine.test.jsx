@@ -1,6 +1,32 @@
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import DrumMachine from './DrumMachine';
+
+beforeAll(() => {
+  global.setup = (component) => ({
+    user: userEvent.setup(),
+    ...render(component),
+  });
+});
+
+beforeEach(() => {
+  global.playMock = jest
+    .spyOn(window.HTMLMediaElement.prototype, 'play')
+    .mockImplementation(() => {});
+  global.pauseMock = jest
+    .spyOn(window.HTMLMediaElement.prototype, 'pause')
+    .mockImplementation(() => {});
+});
+
+afterEach(() => {
+  global.playMock.mockRestore();
+  global.pauseMock.mockRestore();
+});
+
+afterAll(() => {
+  global.setup = undefined;
+});
 
 describe('DrumMachine test suite', () => {
   it('should render a div with a corresponding id="drum-machine" (US #1)', () => {
@@ -31,5 +57,15 @@ describe('DrumMachine test suite', () => {
     expect(drumPads).toHaveLength(9);
     expect(drumPads[0].id).toBe('Heater-1');
     expect(key).toBe('Q');
+  });
+
+  it('should play the audio clip when pressing the trigger key associated to the drum pad (US #6)', async () => {
+    const { user } = global.setup(<DrumMachine />);
+
+    expect(global.playMock).not.toHaveBeenCalled();
+
+    await user.keyboard('A');
+
+    expect(global.playMock).toHaveBeenCalled();
   });
 });
