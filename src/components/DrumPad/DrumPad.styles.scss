@@ -14,10 +14,10 @@
   span {
     font-size: 1.5em;
     font-weight: bold;
+    user-select: none;
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     transform: translateY(-0.2em);
   }
 }
