@@ -1,6 +1,10 @@
 #drum-machine {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   width: 70%;
   height: 60%;
+  background-color: #222;
   margin: 0 auto;
   border: 0.2rem solid #fff;
   border-radius: 2rem;
@@ -11,6 +15,7 @@
 }
 
 #drum-pad-container {
+  flex: 2 1 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

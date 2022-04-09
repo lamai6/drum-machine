@@ -13,7 +13,7 @@ class DrumPad extends Component {
 
   componentDidUpdate() {
     const { keyTriggered } = this.props;
-    this.handleKeyPressed(keyTriggered);
+    if (keyTriggered !== '') this.handleKeyPressed(keyTriggered);
   }
 
   handleKeyPressed(key) {
@@ -23,11 +23,17 @@ class DrumPad extends Component {
     }
   }
 
-  playSound() {
+  async playSound() {
     const { current: audio } = this.audioRef;
+    const { updateDisplay, soundId } = this.props;
+
     audio.pause();
     audio.currentTime = 0;
-    audio.play();
+    await audio.play();
+    updateDisplay(soundId.replace(/-/g, ' '));
+    setTimeout(() => {
+      updateDisplay('');
+    }, 1500);
   }
 
   render() {
@@ -60,6 +66,7 @@ DrumPad.propTypes = {
   soundSrc: PropTypes.string.isRequired,
   soundKey: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
+  updateDisplay: PropTypes.func.isRequired,
 };
 
 export default DrumPad;

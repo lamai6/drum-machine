@@ -10,16 +10,22 @@ class DrumMachine extends Component {
     this.state = {
       activeSoundBox: soundBox1,
       keyEvent: '',
+      message: '',
     };
     this.drumMachineRef = createRef();
+    this.updateDisplay = this.updateDisplay.bind(this);
   }
 
   componentDidMount() {
     this.drumMachineRef.current.focus();
   }
 
+  updateDisplay(message) {
+    this.setState(() => ({ message, keyEvent: '' }));
+  }
+
   render() {
-    const { activeSoundBox, keyEvent } = this.state;
+    const { activeSoundBox, keyEvent, message } = this.state;
     const drumPads = activeSoundBox.map((sound) => (
       <DrumPad
         key={sound.id}
@@ -27,6 +33,7 @@ class DrumMachine extends Component {
         soundSrc={sound.url}
         soundKey={sound.keyTrigger}
         keyTriggered={keyEvent}
+        updateDisplay={this.updateDisplay}
       />
     ));
 
@@ -39,7 +46,7 @@ class DrumMachine extends Component {
         tabIndex={0}
       >
         <div id="drum-pad-container">{drumPads}</div>
-        <Display />
+        <Display message={message} />
       </div>
     );
   }
