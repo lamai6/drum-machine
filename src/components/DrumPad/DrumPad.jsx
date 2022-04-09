@@ -27,10 +27,15 @@ class DrumPad extends Component {
     const { current: audio } = this.audioRef;
     const { updateDisplay, soundId } = this.props;
 
-    audio.pause();
-    audio.currentTime = 0;
-    await audio.play();
     updateDisplay(soundId.replace(/-/g, ' '));
+
+    try {
+      await audio.play();
+      audio.currentTime = 0;
+    } catch (err) {
+      // fixes `play() request was interrupted by a call to pause()` (https://goo.gl/LdLk22)
+    }
+
     setTimeout(() => {
       updateDisplay('');
     }, 1500);
@@ -40,7 +45,7 @@ class DrumPad extends Component {
     const { soundId, soundSrc, soundKey } = this.props;
     return (
       <div
-        onClick={(e) => this.playSound(e.key)}
+        onClick={this.playSound}
         onKeyDown={this.handleKeyPressed}
         className="drum-pad"
         id={soundId}
