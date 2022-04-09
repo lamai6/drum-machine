@@ -5,8 +5,8 @@ function Display(props) {
   const { message } = props;
   return (
     <div id="display-container">
-      <div id="display">
-        <span>{message}</span>
+      <div>
+        <span id="display">{message}</span>
       </div>
     </div>
   );

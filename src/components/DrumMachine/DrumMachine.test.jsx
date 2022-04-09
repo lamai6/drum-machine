@@ -38,7 +38,7 @@ describe('Product Backlog test suite', () => {
 
   it('should render a div with a corresponding id="display" within #drum-machine (US #2)', () => {
     const { container } = render(<DrumMachine />);
-    const display = container.querySelector('div[id=display]');
+    const display = container.querySelector('span[id=display]');
 
     expect(display).toBeInTheDocument();
   });
@@ -68,7 +68,7 @@ describe('Product Backlog test suite', () => {
 
   it('should render a #display element with a text describing the audio clip played when .drum-pad is triggered (US #7)', async () => {
     const { user, container } = global.setup(<DrumMachine />);
-    const display = container.querySelector('div[id=display]');
+    const display = container.querySelector('span[id=display]');
     const drumPad = container.querySelector('div[id=Heater-1]');
 
     expect(display).toBeInTheDocument();
@@ -83,7 +83,7 @@ describe('DrumMachine component test suite', () => {
   it('should remove the text in #display element one and a half seconds later', async () => {
     jest.useFakeTimers();
     const { container } = global.setup(<DrumMachine />);
-    const display = container.querySelector('div[id=display]');
+    const display = container.querySelector('span[id=display]');
     const drumPad = container.querySelector('div[id=Heater-1]');
 
     expect(display).toHaveTextContent('');
