@@ -37,6 +37,7 @@ describe('DrumPad test suite', () => {
         soundSrc="https://fakesoundurl.com/heater-1"
         soundKey="Q"
         keyTriggered=""
+        updateDisplay={() => {}}
       />
     );
     const audio = container.querySelector('audio');
@@ -54,6 +55,7 @@ describe('DrumPad test suite', () => {
         soundSrc="https://fakesoundurl.com/heater-1"
         soundKey="Q"
         keyTriggered=""
+        updateDisplay={() => {}}
       />
     );
     const drumPad = container.querySelector('div[id=Heater-1]');

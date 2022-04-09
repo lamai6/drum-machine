@@ -38,10 +38,7 @@ describe('DrumMachine test suite', () => {
 
   it('should render a div with a corresponding id="display" within #drum-machine (US #2)', () => {
     const { container } = render(<DrumMachine />);
-    const outerContainer = container.querySelector('div[id=drum-machine]');
-    const display = Array.from(outerContainer.childNodes).filter(
-      (elem) => elem.id === 'display'
-    )[0];
+    const display = container.querySelector('div[id=display]');
 
     expect(display).toBeInTheDocument();
   });
@@ -67,5 +64,18 @@ describe('DrumMachine test suite', () => {
     await user.keyboard('A');
 
     expect(global.playMock).toHaveBeenCalled();
+  });
+
+  it('should render a #display element with a text describing the audio clip played when .drum-pad is triggered (US #7)', async () => {
+    const { user, container } = global.setup(<DrumMachine />);
+    const display = container.querySelector('div[id=display]');
+    const drumPad = container.querySelector('div[id=Heater-1]');
+
+    expect(display).toBeInTheDocument();
+    expect(display).toHaveTextContent('');
+
+    await user.click(drumPad);
+
+    expect(display).toHaveTextContent('Heater 1');
   });
 });
