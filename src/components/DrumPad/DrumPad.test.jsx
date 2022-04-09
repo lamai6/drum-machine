@@ -28,7 +28,7 @@ afterAll(() => {
   global.setup = undefined;
 });
 
-describe('DrumPad test suite', () => {
+describe('Product Backlog test suite', () => {
   it('should render within .drum-pad an audio element with src pointing to a clip, a class name of clip and an id corresponding to drum pad key trigger (US #4)', () => {
     const { container } = render(
       <DrumPad

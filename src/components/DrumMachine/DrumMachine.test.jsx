@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import DrumMachine from './DrumMachine';
@@ -28,7 +28,7 @@ afterAll(() => {
   global.setup = undefined;
 });
 
-describe('DrumMachine test suite', () => {
+describe('Product Backlog test suite', () => {
   it('should render a div with a corresponding id="drum-machine" (US #1)', () => {
     const { container } = render(<DrumMachine />);
     const outerContainer = container.querySelector('div[id=drum-machine]');
@@ -75,7 +75,31 @@ describe('DrumMachine test suite', () => {
     expect(display).toHaveTextContent('');
 
     await user.click(drumPad);
-
     expect(display).toHaveTextContent('Heater 1');
+  });
+});
+
+describe('DrumMachine component test suite', () => {
+  it('should remove the text in #display element one and a half seconds later', async () => {
+    jest.useFakeTimers();
+    const { container } = global.setup(<DrumMachine />);
+    const display = container.querySelector('div[id=display]');
+    const drumPad = container.querySelector('div[id=Heater-1]');
+
+    expect(display).toHaveTextContent('');
+
+    fireEvent.click(drumPad);
+
+    await waitFor(() => {
+      expect(display).toHaveTextContent('Heater 1');
+    });
+
+    jest.advanceTimersByTime(1500);
+
+    await waitFor(() => {
+      expect(display).toHaveTextContent('');
+    });
+
+    jest.useRealTimers();
   });
 });
