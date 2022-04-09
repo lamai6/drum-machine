@@ -94,7 +94,7 @@ describe('DrumMachine component test suite', () => {
       expect(display).toHaveTextContent('Heater 1');
     });
 
-    jest.advanceTimersByTime(1500);
+    jest.runOnlyPendingTimers();
 
     await waitFor(() => {
       expect(display).toHaveTextContent('');
