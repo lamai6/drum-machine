@@ -85,7 +85,7 @@ describe('Product Backlog test suite', () => {
 });
 
 describe('DrumMachine component test suite', () => {
-  it('should remove the text in #display element one and a half seconds later', async () => {
+  it('should remove the text in #display element two seconds later', async () => {
     jest.useFakeTimers();
     const { container } = global.setup(<DrumMachine />);
     let display = container.querySelector('span[id=display]');
@@ -108,5 +108,19 @@ describe('DrumMachine component test suite', () => {
     });
 
     jest.useRealTimers();
+  });
+
+  it('should change the volume of audio clips', async () => {
+    const { container } = global.setup(<DrumMachine />);
+    const volumeBar = container.querySelector('input[type=range]');
+    const audio = container.querySelector('div[id=Heater-1] > audio');
+
+    expect(audio).toHaveProperty('volume', 1);
+
+    fireEvent.change(volumeBar, { target: { value: 0.5 } });
+
+    await waitFor(() => {
+      expect(audio).toHaveProperty('volume', 0.5);
+    });
   });
 });
