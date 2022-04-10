@@ -2,6 +2,7 @@ import { Component, createRef } from 'react';
 import Display from '../Display/Display';
 import DrumPad from '../DrumPad/DrumPad';
 import { soundBox1, soundBox2 } from '../../assets/data/sounds';
+import generateRandomStr from '../../utils/generateRandomStr';
 import './DrumMachine.styles.scss';
 
 class DrumMachine extends Component {
@@ -21,7 +22,8 @@ class DrumMachine extends Component {
   }
 
   updateDisplay(message) {
-    this.setState(() => ({ message, keyEvent: '' }));
+    const formattedMessage = `${message}_${generateRandomStr()}`;
+    this.setState(() => ({ message: formattedMessage, keyEvent: '' }));
   }
 
   render() {

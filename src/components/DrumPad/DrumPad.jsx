@@ -35,10 +35,6 @@ class DrumPad extends Component {
     } catch (err) {
       // fixes `play() request was interrupted by a call to pause()` (https://goo.gl/LdLk22)
     }
-
-    setTimeout(() => {
-      updateDisplay('');
-    }, 1500);
   }
 
   render() {
