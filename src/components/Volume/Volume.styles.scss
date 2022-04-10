@@ -1,0 +1,67 @@
+$trackWidth: 100%;
+$trackHeight: 0.8rem;
+$trackBorderWidth: 0rem;
+
+$thumbWidth: 2.5rem;
+$thumbHeight: 2.5rem;
+
+@mixin track() {
+  width: $trackWidth;
+  height: $trackHeight;
+  background-color: #ccc;
+  border-radius: 0.5em;
+}
+
+@mixin thumb() {
+  width: $thumbWidth;
+  height: $thumbHeight;
+  background-color: #060606;
+  border-radius: 50%;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 1rem #ff3131,
+    0 0 0.8rem #ff3131, inset 0 0 0.3rem #ff3131;
+}
+
+#volume-container {
+  display: flex;
+  justify-content: center;
+  height: 10%;
+  padding: 2em;
+
+  #volume {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+      @include track();
+    }
+
+    &::-moz-range-track {
+      @include track();
+    }
+
+    &::-webkit-slider-thumb {
+      @include thumb();
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: ($trackHeight - $thumbHeight - ($trackBorderWidth * 2)) / 2;
+    }
+
+    &::-moz-range-thumb {
+      @include thumb();
+      border: none;
+    }
+  }
+}

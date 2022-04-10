@@ -11,9 +11,12 @@ class DrumPad extends Component {
     this.handleKeyPressed = this.handleKeyPressed.bind(this);
   }
 
-  componentDidUpdate() {
-    const { keyTriggered } = this.props;
+  componentDidUpdate({ volume: prevVolume }) {
+    const { keyTriggered, volume } = this.props;
+    const { current: audio } = this.audioRef;
+
     if (keyTriggered !== '') this.handleKeyPressed(keyTriggered);
+    if (volume !== prevVolume) audio.volume = volume;
   }
 
   handleKeyPressed(key) {
@@ -67,6 +70,7 @@ DrumPad.propTypes = {
   soundSrc: PropTypes.string.isRequired,
   soundKey: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
+  volume: PropTypes.number.isRequired,
   updateDisplay: PropTypes.func.isRequired,
 };
 

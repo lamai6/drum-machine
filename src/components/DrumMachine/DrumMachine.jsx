@@ -1,6 +1,7 @@
 import { Component, createRef } from 'react';
 import Display from '../Display/Display';
 import DrumPad from '../DrumPad/DrumPad';
+import Volume from '../Volume/Volume';
 import { soundBox1, soundBox2 } from '../../assets/data/sounds';
 import generateRandomStr from '../../utils/generateRandomStr';
 import './DrumMachine.styles.scss';
@@ -12,9 +13,11 @@ class DrumMachine extends Component {
       activeSoundBox: soundBox1,
       keyEvent: '',
       message: '',
+      volume: 1,
     };
     this.drumMachineRef = createRef();
     this.updateDisplay = this.updateDisplay.bind(this);
+    this.updateVolume = this.updateVolume.bind(this);
   }
 
   componentDidMount() {
@@ -26,11 +29,17 @@ class DrumMachine extends Component {
     this.setState(() => ({ message: formattedMessage, keyEvent: '' }));
   }
 
+  updateVolume(volume) {
+    this.setState(() => ({ volume }));
+    this.updateDisplay(`Volume: ${Math.round(volume * 100)}`);
+  }
+
   render() {
-    const { activeSoundBox, keyEvent, message } = this.state;
+    const { activeSoundBox, keyEvent, message, volume } = this.state;
     const drumPads = activeSoundBox.map((sound) => (
       <DrumPad
         key={sound.id}
+        volume={volume}
         soundId={sound.id}
         soundSrc={sound.url}
         soundKey={sound.keyTrigger}
@@ -49,6 +58,7 @@ class DrumMachine extends Component {
       >
         <div id="drum-pad-container">{drumPads}</div>
         <Display message={message} />
+        <Volume updateVolume={this.updateVolume} volume={volume} />
       </div>
     );
   }
