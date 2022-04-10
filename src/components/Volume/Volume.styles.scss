@@ -2,7 +2,7 @@ $trackWidth: 100%;
 $trackHeight: 0.8rem;
 $trackBorderWidth: 0rem;
 
-$thumbWidth: 2.5rem;
+$thumbWidth: 4rem;
 $thumbHeight: 2.5rem;
 
 @mixin track() {
@@ -16,7 +16,7 @@ $thumbHeight: 2.5rem;
   width: $thumbWidth;
   height: $thumbHeight;
   background-color: #060606;
-  border-radius: 50%;
+  border-radius: 3px;
   box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 1rem #ff3131,
     0 0 0.8rem #ff3131, inset 0 0 0.3rem #ff3131;
 }
