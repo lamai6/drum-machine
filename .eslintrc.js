@@ -15,6 +15,16 @@ module.exports = {
         functions: 'only-multiline',
       },
     ],
+    // removes minProperties property to fix conflict with Prettier
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: { multiline: true, consistent: true },
+        ObjectPattern: { multiline: true, consistent: true },
+        ImportDeclaration: { multiline: true, consistent: true },
+        ExportDeclaration: { multiline: true, consistent: true },
+      },
+    ],
     'implicit-arrow-linebreak': 'off',
     'function-paren-newline': 'off',
     'no-confusing-arrow': 'off',
