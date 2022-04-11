@@ -8,9 +8,6 @@ beforeAll(() => {
     user: userEvent.setup(),
     ...render(component),
   });
-});
-
-beforeEach(() => {
   global.playMock = jest
     .spyOn(window.HTMLMediaElement.prototype, 'play')
     .mockImplementation(() => {});
@@ -19,13 +16,10 @@ beforeEach(() => {
     .mockImplementation(() => {});
 });
 
-afterEach(() => {
-  global.playMock.mockRestore();
-  global.pauseMock.mockRestore();
-});
-
 afterAll(() => {
   global.setup = undefined;
+  global.playMock.mockRestore();
+  global.pauseMock.mockRestore();
 });
 
 describe('Product Backlog test suite', () => {
@@ -66,21 +60,26 @@ describe('Product Backlog test suite', () => {
     expect(global.playMock).toHaveBeenCalled();
   });
 
-  it('should render a #display element with a text describing the audio clip played when .drum-pad is triggered (US #7)', async () => {
-    const { user, container } = global.setup(<DrumMachine />);
+  it('should render a #display element with a text describing the audio clip played when .drum-pad is triggered (US #7)', () => {
+    jest.useFakeTimers();
+
+    const { container } = global.setup(<DrumMachine />);
     let display = container.querySelector('span[id=display]');
     const drumPad = container.querySelector('div[id=Heater-1]');
 
     expect(display).toBeInTheDocument();
     expect(display).toHaveTextContent('');
 
-    await user.click(drumPad);
+    fireEvent.click(drumPad);
 
     display = container.querySelector('span[id=display]');
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(display).toHaveTextContent('HEATER 1');
     });
+
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
   });
 });
 
