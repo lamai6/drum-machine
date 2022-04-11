@@ -87,6 +87,7 @@ describe('Product Backlog test suite', () => {
 describe('DrumMachine component test suite', () => {
   it('should remove the text in #display element two seconds later', async () => {
     jest.useFakeTimers();
+
     const { container } = global.setup(<DrumMachine />);
     let display = container.querySelector('span[id=display]');
     const drumPad = container.querySelector('div[id=Heater-1]');
@@ -122,5 +123,48 @@ describe('DrumMachine component test suite', () => {
     await waitFor(() => {
       expect(audio).toHaveProperty('volume', 0.5);
     });
+  });
+
+  it('should change the active soundbox on checkbox click', async () => {
+    const { container } = global.setup(<DrumMachine />);
+    const checkbox = container.querySelector('input[type=checkbox]');
+    let [drumPad] = container.querySelectorAll('div[class=drum-pad]');
+
+    await waitFor(() => {
+      expect(drumPad).toHaveAttribute('id', 'Heater-1');
+    });
+
+    fireEvent.click(checkbox);
+
+    [drumPad] = container.querySelectorAll('div[class=drum-pad]');
+
+    await waitFor(() => {
+      expect(drumPad).toHaveAttribute('id', 'Chord-1');
+    });
+  });
+
+  it('should display the active soundbox name on checkbox click', async () => {
+    jest.useFakeTimers();
+
+    const { container } = global.setup(<DrumMachine />);
+    const checkbox = container.querySelector('input[type=checkbox]');
+    let display = container.querySelector('span[id=display]');
+
+    fireEvent.click(checkbox);
+    display = container.querySelector('span[id=display]');
+
+    await waitFor(() => {
+      expect(display).toHaveTextContent('SMOOTH PIANO KIT');
+    });
+
+    fireEvent.click(checkbox);
+    display = container.querySelector('span[id=display]');
+
+    await waitFor(() => {
+      expect(display).toHaveTextContent('HEATER KIT');
+    });
+
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
   });
 });
