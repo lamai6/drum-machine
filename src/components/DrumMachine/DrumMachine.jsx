@@ -25,7 +25,7 @@ class DrumMachine extends Component {
   }
 
   updateDisplay(message) {
-    const formattedMessage = `${message}_${generateRandomStr()}`;
+    const formattedMessage = `${message}_${generateRandomStr()}`.toUpperCase();
     this.setState(() => ({ message: formattedMessage, keyEvent: '' }));
   }
 
