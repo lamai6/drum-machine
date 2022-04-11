@@ -24,8 +24,11 @@ $thumbHeight: 2.5rem;
 #volume-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 50%;
   height: 10%;
-  margin: 1em 2em;
+  padding: 0 2em;
+  margin: 2em 0;
 
   div {
     width: 20%;
