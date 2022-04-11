@@ -3,15 +3,15 @@ import Display from '../Display/Display';
 import DrumPad from '../DrumPad/DrumPad';
 import Volume from '../Volume/Volume';
 import SoundBox from '../SoundBox/SoundBox';
-import { soundBox1, soundBox2 } from '../../assets/data/sounds';
 import generateRandomStr from '../../utils/generateRandomStr';
+import { SOUND_BOX_1, SOUND_BOX_2 } from '../../assets/data/constants';
 import './DrumMachine.styles.scss';
 
 class DrumMachine extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSoundBox: soundBox1,
+      activeSoundBox: SOUND_BOX_1,
       keyEvent: '',
       message: '',
       volume: 1,
@@ -39,9 +39,9 @@ class DrumMachine extends Component {
   toggleSoundBox() {
     this.setState(
       ({ activeSoundBox }) =>
-        activeSoundBox === soundBox1
-          ? { activeSoundBox: soundBox2 }
-          : { activeSoundBox: soundBox1 },
+        activeSoundBox === SOUND_BOX_1
+          ? { activeSoundBox: SOUND_BOX_2 }
+          : { activeSoundBox: SOUND_BOX_1 },
       () => {
         const { activeSoundBox } = this.state;
         this.updateDisplay(activeSoundBox.name);

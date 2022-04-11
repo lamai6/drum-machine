@@ -1,4 +1,4 @@
-const soundBox1 = {
+const SOUND_BOX_1 = {
   name: 'Heater Kit',
   sounds: [
     {
@@ -58,7 +58,7 @@ const soundBox1 = {
   ],
 };
 
-const soundBox2 = {
+const SOUND_BOX_2 = {
   name: 'Smooth Piano Kit',
   sounds: [
     {
@@ -118,4 +118,14 @@ const soundBox2 = {
   ],
 };
 
-export {soundBox1, soundBox2};
+const DEFAULT_PAD_STYLE = {
+  backgroundColor: '#b3b3b3',
+  color: '#000',
+};
+
+const TRIGGERED_PAD_STYLE = {
+  backgroundColor: '#ff3131',
+  color: '#fff',
+};
+
+export { SOUND_BOX_1, SOUND_BOX_2, DEFAULT_PAD_STYLE, TRIGGERED_PAD_STYLE };

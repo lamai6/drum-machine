@@ -1,12 +1,19 @@
 import { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
+import {
+  DEFAULT_PAD_STYLE,
+  TRIGGERED_PAD_STYLE,
+} from '../../assets/data/constants';
 import './DrumPad.styles.scss';
 
 class DrumPad extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      padStyle: DEFAULT_PAD_STYLE,
+    };
     this.audioRef = createRef();
+    this.stylePad = this.stylePad.bind(this);
     this.playSound = this.playSound.bind(this);
     this.handleKeyPressed = this.handleKeyPressed.bind(this);
   }
@@ -26,10 +33,18 @@ class DrumPad extends Component {
     }
   }
 
+  stylePad() {
+    this.setState(() => ({ padStyle: TRIGGERED_PAD_STYLE }));
+    setTimeout(() => {
+      this.setState(() => ({ padStyle: DEFAULT_PAD_STYLE }));
+    }, 200);
+  }
+
   async playSound() {
     const { current: audio } = this.audioRef;
     const { updateDisplay, soundId } = this.props;
 
+    this.stylePad();
     updateDisplay(soundId.replace(/-/g, ' '));
 
     try {
@@ -42,14 +57,16 @@ class DrumPad extends Component {
 
   render() {
     const { soundId, soundSrc, soundKey } = this.props;
+    const { padStyle } = this.state;
     return (
       <div
         onClick={this.playSound}
         onKeyDown={this.handleKeyPressed}
+        style={padStyle}
         className="drum-pad"
         id={soundId}
         role="button"
-        tabIndex={0}
+        tabIndex={-1}
       >
         <audio
           ref={this.audioRef}
