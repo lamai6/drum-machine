@@ -4,7 +4,7 @@ import DrumPad from '../DrumPad/DrumPad';
 import Volume from '../Volume/Volume';
 import SoundBox from '../SoundBox/SoundBox';
 import generateRandomStr from '../../utils/generateRandomStr';
-import { SOUND_BOX_1, SOUND_BOX_2 } from '../../assets/data/constants';
+import { SOUND_BOX_1, SOUND_BOX_2 } from '../../utils/constants';
 import './DrumMachine.styles.scss';
 
 class DrumMachine extends Component {

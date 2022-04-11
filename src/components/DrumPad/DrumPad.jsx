@@ -1,9 +1,6 @@
 import { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import {
-  DEFAULT_PAD_STYLE,
-  TRIGGERED_PAD_STYLE,
-} from '../../assets/data/constants';
+import { DEFAULT_PAD_STYLE, TRIGGERED_PAD_STYLE } from '../../utils/constants';
 import './DrumPad.styles.scss';
 
 class DrumPad extends Component {
