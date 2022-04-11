@@ -79,7 +79,7 @@ describe('Product Backlog test suite', () => {
     display = container.querySelector('span[id=display]');
 
     await waitFor(() => {
-      expect(display).toHaveTextContent('Heater 1');
+      expect(display).toHaveTextContent('HEATER 1');
     });
   });
 });
@@ -98,7 +98,7 @@ describe('DrumMachine component test suite', () => {
     display = container.querySelector('span[id=display]');
 
     await waitFor(() => {
-      expect(display).toHaveTextContent('Heater 1');
+      expect(display).toHaveTextContent('HEATER 1');
     });
 
     jest.runOnlyPendingTimers();
