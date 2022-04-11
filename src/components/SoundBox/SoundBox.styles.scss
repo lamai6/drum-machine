@@ -1,3 +1,5 @@
+@import '../../utils/mixins';
+
 #soundbox-container {
   display: flex;
   justify-content: center;
@@ -6,6 +8,13 @@
   height: 10%;
   padding: 0 2em;
   margin: 2em 0;
+
+  @include media-max('phone') {
+    order: 2;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
 
   div {
     width: 20%;

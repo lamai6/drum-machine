@@ -1,25 +1,11 @@
+@import '../../utils/mixins';
+
 $trackWidth: 100%;
 $trackHeight: 0.8rem;
 $trackBorderWidth: 0rem;
 
 $thumbWidth: 4rem;
 $thumbHeight: 2.5rem;
-
-@mixin track() {
-  width: $trackWidth;
-  height: $trackHeight;
-  background-color: #ccc;
-  border-radius: 0.5em;
-}
-
-@mixin thumb() {
-  width: $thumbWidth;
-  height: $thumbHeight;
-  background-color: #060606;
-  border-radius: 3px;
-  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 1rem #ff3131,
-    0 0 0.8rem #ff3131, inset 0 0 0.3rem #ff3131;
-}
 
 #volume-container {
   display: flex;
@@ -29,6 +15,13 @@ $thumbHeight: 2.5rem;
   height: 10%;
   padding: 0 2em;
   margin: 2em 0;
+
+  @include media-max('phone') {
+    order: 3;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
 
   div {
     width: 20%;

@@ -1,0 +1,28 @@
+$_breakpoints: (
+  'phone': 600px,
+  'tablet': 900px,
+);
+
+@mixin track() {
+  width: $trackWidth;
+  height: $trackHeight;
+  background-color: #ccc;
+  border-radius: 0.5em;
+}
+
+@mixin thumb() {
+  width: $thumbWidth;
+  height: $thumbHeight;
+  background-color: #060606;
+  border-radius: 3px;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 1rem #ff3131,
+    0 0 0.8rem #ff3131, inset 0 0 0.3rem #ff3131;
+}
+
+@mixin media-max($_breakpoint) {
+  @media screen and (max-width: map-get($_breakpoints, $_breakpoint)) {
+    & {
+      @content;
+    }
+  }
+}
