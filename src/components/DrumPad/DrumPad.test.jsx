@@ -8,9 +8,6 @@ beforeAll(() => {
     user: userEvent.setup(),
     ...render(component),
   });
-});
-
-beforeEach(() => {
   global.playMock = jest
     .spyOn(window.HTMLMediaElement.prototype, 'play')
     .mockImplementation(() => {});
@@ -19,13 +16,10 @@ beforeEach(() => {
     .mockImplementation(() => {});
 });
 
-afterEach(() => {
-  global.playMock.mockRestore();
-  global.pauseMock.mockRestore();
-});
-
 afterAll(() => {
   global.setup = undefined;
+  global.playMock.mockRestore();
+  global.pauseMock.mockRestore();
 });
 
 describe('Product Backlog test suite', () => {
@@ -33,6 +27,7 @@ describe('Product Backlog test suite', () => {
     const { container } = render(
       <DrumPad
         key="Heater-1"
+        volume={0}
         soundId="Heater-1"
         soundSrc="https://fakesoundurl.com/heater-1"
         soundKey="Q"
@@ -51,6 +46,7 @@ describe('Product Backlog test suite', () => {
     const { user, container } = global.setup(
       <DrumPad
         key="Heater-1"
+        volume={0}
         soundId="Heater-1"
         soundSrc="https://fakesoundurl.com/heater-1"
         soundKey="Q"
