@@ -16,7 +16,7 @@ function Volume({ updateVolume, volume }) {
 
   const getIcon = () => {
     if (volume > 0.66) return faVolumeHigh;
-    if (volume > 0.15) return faVolumeLow;
+    if (volume > 0.2) return faVolumeLow;
     if (volume > 0) return faVolumeOff;
     return faVolumeXmark;
   };
