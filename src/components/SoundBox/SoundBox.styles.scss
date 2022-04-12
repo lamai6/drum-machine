@@ -59,7 +59,7 @@
       position: absolute;
       content: '';
       height: 1.875em;
-      width: 25%;
+      width: 50%;
       left: 0.125em;
       bottom: 0.125em;
       -webkit-transition: 0.4s;
@@ -72,8 +72,8 @@
   }
 
   input:checked + #slider:before {
-    -webkit-transform: translateX(calc(300% - 0.25em));
-    -ms-transform: translateX(calc(300% - 0.25em));
-    transform: translateX(calc(300% - 0.25em));
+    -webkit-transform: translateX(calc(100% - 0.25em));
+    -ms-transform: translateX(calc(100% - 0.25em));
+    transform: translateX(calc(100% - 0.25em));
   }
 }
